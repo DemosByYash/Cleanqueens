@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f4f4f4;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .flyer {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flyer img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .flyer img.active {
+            display: block;
+        }
+
+        .flyer .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .flyer .arrow.left {
+            left: 10px;
+        }
+
+        .flyer .arrow.right {
+            right: 10px;
+        }
+
+        .contact-section {
+            padding: 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 15px;
+        }
+
+        .contact-section form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-section input,
+        .contact-section textarea,
+        .contact-section button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .contact-section button {
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .contact-section button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="" alt="Business Logo" style="height: 50px;">
+        </div>
+        <nav>
+            <a href="#">Contact Us</a>
+            <a href="#">Work & Services</a>
+            <a href="#">About Us</a>
+        </nav>
+    </header>
+
+    <div class="flyer">
+        <button class="arrow left">&#10094;</button>
+        <img src="" alt="Flyer Image 1" class="active">
+        <img src="" alt="Flyer Image 2">
+        <img src="" alt="Flyer Image 3">
+        <img src="" alt="Flyer Image 4">
+        <button class="arrow right">&#10095;</button>
+    </div>
+
+    <section class="contact-section">
+        <h2>Feel Free to Enquire</h2>
+        <form action="#" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <script>
+        const images = document.querySelectorAll('.flyer img');
+        const leftArrow = document.querySelector('.arrow.left');
+        const rightArrow = document.querySelector('.arrow.right');
+        let currentImageIndex = 0;
+
+        function updateImage() {
+            images.forEach((img, index) => {
+                img.classList.toggle('active', index === currentImageIndex);
+            });
+        }
+
+        leftArrow.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
+            updateImage();
+        });
+
+        rightArrow.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
+            updateImage();
+        });
+
+        updateImage();
+    </script>
+</body>
+</html>
